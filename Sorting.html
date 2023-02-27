@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./node_modules/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.css">
+    <script>
+        var cities = ["Delhi", "Ahmedabad", "Chennai", "Banglore", "Hyderabad", "Pune", "Mumbai", "Kolkata"];
+        
+        function bodyload(){
+            document.querySelector("ol").innerHTML="";
+             for(var item of cities){
+                var li = document.createElement("li");
+                li.innerHTML = item;
+                document.querySelector("ol").appendChild(li); 
+             }
+        }
+
+        function SortClick() {
+            var icon = document.getElementById("icon");
+            icon.className = (icon.className == "bi bi-sort-alpha-down") ? "bi bi-sort-alpha-up" : "bi bi-sort-alpha-down";
+            if(icon.className == "bi bi-sort-alpha-down"){
+               cities.sort();
+               document.querySelector("h4").innerHTML = "Ascending Order";
+               bodyload();
+            }
+            else if(icon.className == "bi bi-sort-alpha-up"){
+                cities.reverse();
+                document.querySelector("h4").innerHTML = "Descending Order";
+                bodyload();
+            }
+        }
+    </script>
+</head>
+
+<body onload="bodyload()" class="d-flex justify-content-center">
+        <div class="mt-5 w-25 p-4 border border-1  border-dark rounded-2">
+            <h4 class="p-2 rounded-1 text-center bg-dark text-white">Sort Cities</h4>
+            <ol></ol>
+            <button onclick="SortClick()" class="btn btn-primary w-100">
+                <span class="bi bi-sort-alpha-down" id="icon"></span>
+            </button>
+        </div>
+</body>
+
+</html>
